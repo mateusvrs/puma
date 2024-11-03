@@ -1,0 +1,25 @@
+{
+  "name": "puma",
+  "version": "1.0.0",
+  "description": "code challenge",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "chmod +x scripts/test.sh && ./scripts/test.sh",
+    "dev": "docker compose up db -d && nodemon --watch 'src' --exec 'node src/index.js'",
+    "start": "NODE_ENV=production node src/index.js",
+    "setup": "chmod +x scripts/setup.sh && ./scripts/setup.sh"
+  },
+  "author": "mateusvrs",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.21.1",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.7",
+    "prisma": "^5.21.1",
+    "supertest": "^7.0.0"
+  }
+}
