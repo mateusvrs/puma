@@ -103,15 +103,13 @@ cd backend
 Instale as dependências do projeto, inicialize o banco de dados e migre as tabelas utilizando o **Prisma**:
 
 ```bash
-npm install
+npm install && npm run setup
 
-docker compose -f docker-compose.yml up -d
+docker compose -f docker-compose.yml -p puma-api up -d
 # pode ser necessário rodar o comando acima como "sudo":
-# sudo docker compose -f docker-compose.yml up -d
+# sudo docker compose -f docker-compose.yml -p puma-api up -d
 
-npx prisma migrate deploy
-
-npx prisma generate
+npm run migrate
 ```
 
 Por fim, execute o backend:
@@ -127,11 +125,11 @@ Aqui as dependências do projeto já devem estar instaladas, então basta execut
 ```bash
 cd backend
 
-docker compose -f docker-compose.test.yml up -d
+docker compose -f docker-compose.test.yml -p puma-api-test up -d
 # pode ser necessário rodar o comando acima como "sudo":
-# sudo docker compose -f docker-compose.test.yml up -d
+# sudo docker compose -f docker-compose.test.yml -p puma-api-test up -d
 
-DATABASE_PORT=5433 npx prisma migrate deploy 
+npm run migrate:test
 
 npm test
 ```

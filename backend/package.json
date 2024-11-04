@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "DATABASE_PORT=5433 node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js",
+    "migrate": "npx prisma migrate deploy && npx prisma generate",
     "dev": "docker compose up db -d && nodemon --watch 'src' --exec 'node src/index.js'",
+    "migrate:test": "DATABASE_PORT=5433 npm run migrate",
+    "test": "DATABASE_PORT=5433 node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js --silent",
     "start": "NODE_ENV=production node src/index.js",
     "setup": "chmod +x scripts/setup.sh && ./scripts/setup.sh"
   },
