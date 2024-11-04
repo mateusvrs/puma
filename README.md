@@ -120,8 +120,6 @@ docker compose -f docker-compose.yml -p puma-api up -d
 # sudo docker compose -f docker-compose.yml -p puma-api up -d
 
 npm run migrate
-# se houver erro, espere alguns segundos e rode novamente
-# visto que o banco de dados pode demorar para inicializar
 ```
 
 Por fim, execute o backend:
@@ -143,8 +141,6 @@ docker compose -f docker-compose.test.yml -p puma-api-test up -d
 # sudo docker compose -f docker-compose.test.yml -p puma-api-test up -d
 
 npm run migrate:test
-# se houver erro, espere alguns segundos e rode novamente
-# visto que o banco de dados pode demorar para inicializar
 
 npm test
 ```
