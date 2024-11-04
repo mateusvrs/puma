@@ -130,11 +130,13 @@ npm start
 
 ### Execução dos Testes
 
-Aqui as dependências do projeto já devem estar instaladas, então basta executar os comando para rodar os testes:
+Basta executar os comando a seguir para rodar os testes:
 
 ```bash
 # a partir da raiz do projeto
 cd backend
+
+npm install && npm run setup
 
 docker compose -f docker-compose.test.yml -p puma-api-test up -d
 # obs: pode ser necessário "sudo" rodar o comando:
