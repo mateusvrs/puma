@@ -9,7 +9,7 @@ class UsersController {
         const body = req.body
         if (!body.username) throw new Error("Username is required", { cause: 400 })
 
-        if (await this.#prisma.user.count() >= 5) throw new Error("User limit exceeded", { cause: 400 })
+        if (await this.#prisma.user.count() >= 5) throw new Error("Maximum of 5 users reached", { cause: 400 })
 
         const response = await fetch(`${GITHUB_URL}/users/${body.username}`)
         if (response.status === 404) throw new Error("User not found", { cause: 404 })
@@ -26,7 +26,11 @@ class UsersController {
     }
 
     async list() {
-        return await this.#prisma.user.findMany()
+        return await this.#prisma.user.findMany({
+            orderBy: {
+                created_at: 'asc'
+            }
+        })
     }
 
     async delete(req) {
