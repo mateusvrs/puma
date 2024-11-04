@@ -4,6 +4,15 @@
 
 O desafio foi implementado por completo, ou seja, o **backend** (API) consegue executar as 4 funcionalidades propostas no desafio, e o **frontend** consegue consumir a API e exibir as informações na tela executando as ações de adicionar usuário, favoritar, listar, remover e ordenar usuários pelo nome.
 
+## Pré-requisitos
+
+- **Node.js** (v18.20.4+)
+- **Docker** (v26.1.3+)
+- **Docker Compose** (v2.27.0+)
+- **NPM** (v10.8.1+)
+
+**Importante:** Todos os comandos a seguir são referentes ao sistema **Linux**.
+
 ## Backend
 
 O backend foi desenvolvido em **Node.js** utilizando o **Express** para criar a API, o ORM chamado **Prisma** foi escolhido para conexão com o banco de dados **PostgreSQL** que é inicializado através de um **Docker**. Para gerenciar os usuários adicionados foi criada uma *Model* chamada **User** com os campos importantes da seguinte forma:
@@ -97,6 +106,7 @@ return await this.#prisma.user.update({
 Para executar o backend é necessário ter o **Node.js** e o **Docker** instalados na máquina. Primeiramente, clone o repositório e acesse a pasta do projeto:
 
 ```bash
+# a partir da raiz do projeto
 cd backend
 ```
 
@@ -106,10 +116,12 @@ Instale as dependências do projeto, inicialize o banco de dados e migre as tabe
 npm install && npm run setup
 
 docker compose -f docker-compose.yml -p puma-api up -d
-# pode ser necessário rodar o comando acima como "sudo":
+# obs: pode ser necessário "sudo" rodar o comando:
 # sudo docker compose -f docker-compose.yml -p puma-api up -d
 
 npm run migrate
+# se houver erro, espere alguns segundos e rode novamente
+# visto que o banco de dados pode demorar para inicializar
 ```
 
 Por fim, execute o backend:
@@ -123,13 +135,16 @@ npm start
 Aqui as dependências do projeto já devem estar instaladas, então basta executar os comando para rodar os testes:
 
 ```bash
+# a partir da raiz do projeto
 cd backend
 
 docker compose -f docker-compose.test.yml -p puma-api-test up -d
-# pode ser necessário rodar o comando acima como "sudo":
+# obs: pode ser necessário "sudo" rodar o comando:
 # sudo docker compose -f docker-compose.test.yml -p puma-api-test up -d
 
 npm run migrate:test
+# se houver erro, espere alguns segundos e rode novamente
+# visto que o banco de dados pode demorar para inicializar
 
 npm test
 ```
@@ -143,6 +158,7 @@ O frontend foi desenvolvido em **Vue.js** utilizando o **Vite** para criar o pro
 Para executar o frontend é necessário ter o **Node.js** instalado na máquina. Primeiramente, clone o repositório e acesse a pasta do projeto:
 
 ```bash
+# a partir da raiz do projeto
 cd frontend
 ```
 
