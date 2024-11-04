@@ -8,9 +8,10 @@ datasource db {
 }
 
 model User {
-  id        String  @id @default(uuid())
-  name      String?
-  photo_url String
-  username  String  @unique
-  favorite  Boolean @default(false)
+  id         String   @id @default(uuid())
+  name       String?
+  photo_url  String
+  username   String   @unique
+  favorite   Boolean  @default(false)
+  created_at DateTime @default(now())
 }
