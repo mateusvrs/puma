@@ -12,4 +12,6 @@ app.use(express.json())
 
 app.use("/users", UsersRouter)
 
-export default app.listen(port)
+export default app.listen(port, () => {
+    console.log(`Server listening on http://localhost:${port}`)
+})
